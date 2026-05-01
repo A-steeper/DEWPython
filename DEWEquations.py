@@ -11,29 +11,29 @@ from mpl_toolkits import mplot3d
 from matplotlib.lines import Line2D
 #get_ipython().run_line_magic('matplotlib', 'inline')
 from collections import defaultdict
-import pkg_resources
+import os
+import os.path as op
 import os.path as op
 
 # ### Defining a Global Variables (Location and Constants)
 
 # In[3]:
-resource_package = 'DEWPython'
 min_path = '/'.join(('resources', 'mineralDictionary.txt'))
-mineralPath = pkg_resources.resource_filename(resource_package, min_path)
+mineralPath = op.join(op.dirname(op.abspath(__file__)), min_path.replace('/', op.sep))
 gas_path = '/'.join(('resources', 'gasLst.txt'))
-gasPath = pkg_resources.resource_filename(resource_package, gas_path)
+gasPath = op.join(op.dirname(op.abspath(__file__)), gas_path.replace('/', op.sep))
 aq_path = '/'.join(('resources', 'aqueousLst.txt'))
-aqPath = pkg_resources.resource_filename(resource_package, aq_path)
+aqPath = op.join(op.dirname(op.abspath(__file__)), aq_path.replace('/', op.sep))
 die_path =  '/'.join(('resources', 'dielectric.csv'))
-diePath = pkg_resources.resource_filename(resource_package, die_path)
+diePath = op.join(op.dirname(op.abspath(__file__)), die_path.replace('/', op.sep))
 inp_path ='/'.join(('resources', 'input.csv'))
-inpPath = pkg_resources.resource_filename(resource_package, inp_path)
+inpPath = op.join(op.dirname(op.abspath(__file__)), inp_path.replace('/', op.sep))
 den_path ='/'.join(('resources', 'input.csv'))
-denPath = pkg_resources.resource_filename(resource_package, den_path)
+denPath = op.join(op.dirname(op.abspath(__file__)), den_path.replace('/', op.sep))
 g_path = '/'.join(('resources', 'water_gibbs.csv'))
-gPath = pkg_resources.resource_filename(resource_package, g_path)
+gPath = op.join(op.dirname(op.abspath(__file__)), g_path.replace('/', op.sep))
 sup_path = '/'.join(('resources', 'SUPCRTBL.exe'))
-supPath =  pkg_resources.resource_filename(resource_package, sup_path)
+supPath =  op.join(op.dirname(op.abspath(__file__)), sup_path.replace('/', op.sep))
 
 global Tr, bigQ, Chi, Pr, E_PrTr, bigR, Psi, Theta, Upsilon, Conversion, mineralDictionary
 bigQ = 5.903E-07

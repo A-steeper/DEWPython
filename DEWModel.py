@@ -5,7 +5,7 @@
 
 # Equation imports
 import numpy as np
-from DEWPython import DEWEquations
+import DEWEquations
 
 # Pandas is used for the custom sheet reading
 import pandas as pd
@@ -27,40 +27,40 @@ from matplotlib.lines import Line2D
 from collections import defaultdict
 
 # path and pkg_resources are used to reference downloaded files in the package
-import pkg_resources
+import os
+import os.path as op
 import os.path as op
 
 #### Defining a Global Variables (Location and Constants)
-resource_package = 'DEWPython' # resource package definition (standard)
 #defualt mineral dictionary
 min_path = '/'.join(('resources', 'mineralDictionary.txt'))
-mineralPath = pkg_resources.resource_filename(resource_package, min_path)
+mineralPath = op.join(op.dirname(op.abspath(__file__)), min_path.replace('/', op.sep))
 
 # extended mineral dictionary
 min_path2 = '/'.join(('resources', 'extendMineralDictionary.txt'))
-mineralPath2 = pkg_resources.resource_filename(resource_package, min_path2)
+mineralPath2 = op.join(op.dirname(op.abspath(__file__)), min_path2.replace('/', op.sep))
 
 #path for the gasses used
 gas_path = '/'.join(('resources', 'gasLst.txt'))
-gasPath = pkg_resources.resource_filename(resource_package, gas_path)
+gasPath = op.join(op.dirname(op.abspath(__file__)), gas_path.replace('/', op.sep))
 
 #path for the aqueous species used
 aq_path = '/'.join(('resources', 'aqueousLst.txt'))
-aqPath = pkg_resources.resource_filename(resource_package, aq_path)
+aqPath = op.join(op.dirname(op.abspath(__file__)), aq_path.replace('/', op.sep))
 
 #paths for custom sheets
 die_path =  '/'.join(('resources', 'dielectric.csv'))
-diePath = pkg_resources.resource_filename(resource_package, die_path)
+diePath = op.join(op.dirname(op.abspath(__file__)), die_path.replace('/', op.sep))
 inp_path ='/'.join(('resources', 'input.csv'))
-inpPath = pkg_resources.resource_filename(resource_package, inp_path)
+inpPath = op.join(op.dirname(op.abspath(__file__)), inp_path.replace('/', op.sep))
 den_path ='/'.join(('resources', 'Wat_den.csv'))
-denPath = pkg_resources.resource_filename(resource_package, den_path)
+denPath = op.join(op.dirname(op.abspath(__file__)), den_path.replace('/', op.sep))
 g_path = '/'.join(('resources', 'water_gibbs.csv'))
-gPath = pkg_resources.resource_filename(resource_package, g_path)
+gPath = op.join(op.dirname(op.abspath(__file__)), g_path.replace('/', op.sep))
 
 # paths for supcrt
 sup_path = '/'.join(('resources', 'supcrt96.x'))
-supPath =  pkg_resources.resource_filename(resource_package, sup_path)
+supPath =  op.join(op.dirname(op.abspath(__file__)), sup_path.replace('/', op.sep))
 
 global Tr, bigQ, Chi, Pr, E_PrTr, bigR, Psi, Theta, Upsilon, Conversion, mineralDictionary
 
@@ -1475,36 +1475,36 @@ class DEW(object):
             plt.figure()
             plt.plot(self.pressureUsed, [i[0] for i in self.delG])
             plt.xlabel('Pressure (bar)')
-            plt.ylabel('$\Delta$G')
-            plt.title('Pressure vs. $\Delta$G Psat Curve')
+            plt.ylabel(r'$\Delta$G')
+            plt.title(r'Pressure vs. $\Delta$G Psat Curve')
             plt.show()
             
             plt.figure()
             plt.plot(self.pressureUsed, [i[0] for i in self.delV])
             plt.xlabel('Pressure (bar)')
-            plt.ylabel('$\Delta$V')
-            plt.title('Pressure vs. $\Delta$V Psat Curve')
+            plt.ylabel(r'$\Delta$V')
+            plt.title(r'Pressure vs. $\Delta$V Psat Curve')
             plt.show()
             
             plt.figure()
             plt.plot(self.tempUsed, [i[0] for i in self.logK])
-            plt.xlabel('Temperature ($^\circ$ C)')
+            plt.xlabel(r'Temperature ($^\circ$ C)')
             plt.ylabel('LogK')
             plt.title('Temperature vs. LogK Psat Curve')
             plt.show()
             
             plt.figure()
             plt.plot(self.tempUsed, [i[0] for i in self.delG])
-            plt.xlabel('Temperature ($^\circ$ C)')
-            plt.ylabel('$\Delta$G')
-            plt.title('Temperature vs. $\Delta$G Psat Curve')
+            plt.xlabel(r'Temperature ($^\circ$ C)')
+            plt.ylabel(r'$\Delta$G')
+            plt.title(r'Temperature vs. $\Delta$G Psat Curve')
             plt.show()
             
             plt.figure()
             plt.plot(self.tempUsed, [i[0] for i in self.delV])
-            plt.xlabel('Temperature ($^\circ$ C)')
-            plt.ylabel('$\Delta$V')
-            plt.title('Temperature vs. $\Delta$V Psat Curve')
+            plt.xlabel(r'Temperature ($^\circ$ C)')
+            plt.ylabel(r'$\Delta$V')
+            plt.title(r'Temperature vs. $\Delta$V Psat Curve')
             plt.show()
             
         ####### NON PSAT PLOTS ########    
@@ -1514,25 +1514,25 @@ class DEW(object):
             for i in self.pDelG:
                 plt.plot(self.tempRed, i)
                 plt.legend(self.pressRed,bbox_to_anchor=(1.05, 1), title = 'Pressure (bar)', loc='upper left')
-                plt.xlabel('Temperature ($^\circ$C)')
-                plt.ylabel('$\Delta$G')
-                plt.title('Temperature vs. $\Delta$G')
+                plt.xlabel(r'Temperature ($^\circ$C)')
+                plt.ylabel(r'$\Delta$G')
+                plt.title(r'Temperature vs. $\Delta$G')
             plt.show()
                 
             plt.figure()
             for i in self.pDelV:
                 plt.plot(self.tempRed, i)
                 plt.legend(self.pressRed,bbox_to_anchor=(1.05, 1), title = 'Pressure (bar)', loc='upper left')
-                plt.xlabel('Temperature ($^\circ$C)')
-                plt.ylabel('$\Delta$V')
-                plt.title('Temperature vs. $\Delta$V')
+                plt.xlabel(r'Temperature ($^\circ$C)')
+                plt.ylabel(r'$\Delta$V')
+                plt.title(r'Temperature vs. $\Delta$V')
             plt.show()
                           
             plt.figure()
             for i in self.pLogK:
                 plt.plot(self.tempRed, i)
                 plt.legend(self.pressRed,bbox_to_anchor=(1.05, 1), title = 'Pressure (bar)', loc='upper left')
-                plt.xlabel('Temperature ($^\circ$C)')
+                plt.xlabel(r'Temperature ($^\circ$C)')
                 plt.ylabel('LogK')
                 plt.title('Temperature vs. LogK')
             plt.show()
@@ -1541,25 +1541,25 @@ class DEW(object):
             plt.figure()              
             for i in self.tDelG:
                 plt.plot(self.pressRed, i)
-                plt.legend(self.tempRed,bbox_to_anchor=(1.05, 1), title = 'Temperature ($^\circ$C)', loc='upper left')
+                plt.legend(self.tempRed,bbox_to_anchor=(1.05, 1), title = r'Temperature ($^\circ$C)', loc='upper left')
                 plt.xlabel('Pressure (bar)')
-                plt.ylabel('$\Delta$G')
-                plt.title('Pressure vs. $\Delta$G')
+                plt.ylabel(r'$\Delta$G')
+                plt.title(r'Pressure vs. $\Delta$G')
             plt.show()
             
             plt.figure()    
             for i in self.tDelV:
                 plt.plot(self.pressRed, i)
-                plt.legend(self.tempRed,bbox_to_anchor=(1.05, 1), title = 'Temperature ($^\circ$C)', loc='upper left')
+                plt.legend(self.tempRed,bbox_to_anchor=(1.05, 1), title = r'Temperature ($^\circ$C)', loc='upper left')
                 plt.xlabel('Pressure (bar)')
-                plt.ylabel('$\Delta$V')
-                plt.title('Pressure vs. $\Delta$V')
+                plt.ylabel(r'$\Delta$V')
+                plt.title(r'Pressure vs. $\Delta$V')
             plt.show()
             
             plt.figure()              
             for i in self.tLogK:
                 plt.plot(self.pressRed, i)
-                plt.legend(self.tempRed,bbox_to_anchor=(1.05, 1), title = 'Temperature ($^\circ$C)', loc='upper left')
+                plt.legend(self.tempRed,bbox_to_anchor=(1.05, 1), title = r'Temperature ($^\circ$C)', loc='upper left')
                 plt.xlabel('Pressure (bar)')
                 plt.ylabel('LogK')
                 plt.title('Pressure vs. LogK')
@@ -1652,10 +1652,11 @@ class DEW(object):
         '''A function that runs the pre-compiled SUPCRTBL found in the file folder'''
         if version != '96':
             sup_path = '/'.join(('resources', 'SUPCRTBL.exe'))
-            supPath =  pkg_resources.resource_filename(resource_package, sup_path)
+            supPath =  op.join(op.dirname(op.abspath(__file__)), sup_path.replace('/', op.sep))
         else:
             sup_path = '/'.join(('resources', 'supcrt96.x'))
-            supPath =  pkg_resources.resource_filename(resource_package, sup_path)
+            supPath =  op.join(op.dirname(op.abspath(__file__)), sup_path.replace('/', op.sep))
+        #self.proc = subprocess.Popen([supPath], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
         self.proc = subprocess.Popen([supPath], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
         self.pout = self.proc.stdout
         self.pin = self.proc.stdin
@@ -1797,7 +1798,7 @@ class DEW(object):
         '''Takes a list of reaction lists (comprised of tuples) and runs supcrt'''
         for reaction in rxn_lst:
             sup_path = '/'.join(('resources', 'supcrt96.x'))
-            supPath =  pkg_resources.resource_filename(resource_package, sup_path)
+            supPath =  op.join(op.dirname(op.abspath(__file__)), sup_path.replace('/', op.sep))
             self.proc = subprocess.Popen([supPath], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
             
             self.pout = self.proc.stdout
@@ -1855,7 +1856,7 @@ class DEW(object):
         else:
             filename = self.supcrtFile
             filePath='/'.join(('resources', filename))
-            file_Path =  pkg_resources.resource_filename(resource_package, filepath)
+            file_Path =  op.join(op.dirname(op.abspath(__file__)), filepath.replace('/', op.sep))
         with open(file_Path, 'r') as f:
             impor = f.read()
             import_data = impor.replace('\t', ' ')
