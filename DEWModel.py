@@ -1122,38 +1122,38 @@ class DEW(object):
         self.gasInpGibbs, self.gasOutGibbs, self.gasInpV, self.gasOutV = self.calculate_gas()
         
 
-        G1 = np.delete(np.asarray(self.waterInpGibbs), [0,1]).astype(np.float) * int(self.waterInputs[0][1])
-        V1 = np.delete(np.asarray(self.waterInpV), [0,1]).astype(np.float) * int(self.waterInputs[0][1])
-        G4 = np.delete(np.asarray(self.waterOutGibbs), [0,1]).astype(np.float) * int(self.waterOutputs[0][1])
-        V4 = np.delete(np.asarray(self.waterOutV), [0,1]).astype(np.float) * int(self.waterOutputs[0][1])
+        G1 = np.delete(np.asarray(self.waterInpGibbs), [0,1]).astype(float) * int(self.waterInputs[0][1])
+        V1 = np.delete(np.asarray(self.waterInpV), [0,1]).astype(float) * int(self.waterInputs[0][1])
+        G4 = np.delete(np.asarray(self.waterOutGibbs), [0,1]).astype(float) * int(self.waterOutputs[0][1])
+        V4 = np.delete(np.asarray(self.waterOutV), [0,1]).astype(float) * int(self.waterOutputs[0][1])
         
         # Gas Loops
         G3, V3 = ([], [])
         for i in range(len(self.gasInpGibbs)):
-            G3.append(np.multiply(np.delete(np.asarray(self.gasInpGibbs[i]), [0,1]).astype(np.float), int(self.gasInpGibbs[i][1])))
-            V3.append(np.multiply(np.delete(np.asarray(self.gasInpV[i]), [0,1]).astype(np.float), int(self.gasInpV[i][1])))
+            G3.append(np.multiply(np.delete(np.asarray(self.gasInpGibbs[i]), [0,1]).astype(float), int(self.gasInpGibbs[i][1])))
+            V3.append(np.multiply(np.delete(np.asarray(self.gasInpV[i]), [0,1]).astype(float), int(self.gasInpV[i][1])))
         G3 = np.sum(G3, axis = 0)
         V3 = np.sum(V3, axis = 0)
         
         G6, V6 = ([], [])
         for i in range(len(self.gasOutGibbs)):
-            G6.append(np.multiply(np.delete(np.asarray(self.gasOutGibbs[i]), [0,1]).astype(np.float), int(self.gasOutGibbs[i][1])))
-            V6.append(np.multiply(np.delete(np.asarray(self.gasOutV[i]), [0,1]).astype(np.float),  int(self.gasOutV[i][1])))
+            G6.append(np.multiply(np.delete(np.asarray(self.gasOutGibbs[i]), [0,1]).astype(float), int(self.gasOutGibbs[i][1])))
+            V6.append(np.multiply(np.delete(np.asarray(self.gasOutV[i]), [0,1]).astype(float),  int(self.gasOutV[i][1])))
         G6 = np.sum(G6, axis = 0)
         V6 = np.sum(V6, axis = 0)
         
         # Aqueous Inputs
         G2, V2 = ([], [])
         for i in range(len(self.aqInpGibbs)):
-            G2.append(np.multiply(np.delete(np.asarray(self.aqInpGibbs[i]), [0,1]).astype(np.float),  int(self.aqInpGibbs[i][1])))
-            V2.append(np.multiply(np.delete(np.asarray(self.aqInpV[i]), [0,1]).astype(np.float),  int(self.aqInpV[i][1])))
+            G2.append(np.multiply(np.delete(np.asarray(self.aqInpGibbs[i]), [0,1]).astype(float),  int(self.aqInpGibbs[i][1])))
+            V2.append(np.multiply(np.delete(np.asarray(self.aqInpV[i]), [0,1]).astype(float),  int(self.aqInpV[i][1])))
         G2 = np.sum(G2, axis = 0)
         V2 = np.sum(V2, axis = 0)    
             
         G5, V5 = ([], [])
         for i in range(len(self.aqOutGibbs)):
-            G5.append(np.multiply(np.delete(np.asarray(self.aqOutGibbs[i]), [0,1]).astype(np.float), int(self.aqOutGibbs[i][1])))
-            V5.append(np.multiply(np.delete(np.asarray(self.aqOutV[i]), [0,1]).astype(np.float), int(self.aqOutV[i][1])))
+            G5.append(np.multiply(np.delete(np.asarray(self.aqOutGibbs[i]), [0,1]).astype(float), int(self.aqOutGibbs[i][1])))
+            V5.append(np.multiply(np.delete(np.asarray(self.aqOutV[i]), [0,1]).astype(float), int(self.aqOutV[i][1])))
         G5 = np.sum(G5, axis = 0)
         V5 = np.sum(V5, axis = 0)
 
