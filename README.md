@@ -31,6 +31,8 @@ DEWPython has been successfully applied to studying:
 
 ## Installation
 
+### IMPORTANT: The pip version on PyPI is currently outdated (v2.0.0 from 2021). Please install from source to get the latest version with all recent updates, bug fixes, and security patches.
+
 ### Using pip
 ```bash
 pip install DEWPython
